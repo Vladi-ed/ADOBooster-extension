@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "ADOBooster",
+  "description": "Extension for Azure DevOps Boards: adds quick actions.",
+  "author": "Vladi Edelshtein",
+  "version": "1.0",
+  "action": {
+    "default_title": "ADOBooster"
+  },
+  "content_scripts": [
+    {
+      "js": ["content-script-loader.js"],
+      "all_frames": false,
+      "matches": [
+        "https://dev.azure.com/securitas-healthcare/*"
+      ]
+    },
+    {
+      "css": ["css/custom.css", "css/dark-theme.css"],
+      "all_frames": true,
+      "matches": [
+        "https://dev.azure.com/securitas-healthcare/SHS/*/edit/*"
+      ]
+    }
+  ],
+  "host_permissions": [
+    "https://dev.azure.com/securitas-healthcare/*"
+  ],
+  "permissions": ["contextMenus", "storage"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "web_accessible_resources": [{
+    "matches": ["<all_urls>"],
+    "resources": ["func/*"]
+  }],
+  "icons": {
+    "40": "img/icon-40.png",
+    "128": "img/icon-128.png"
+  }
+}

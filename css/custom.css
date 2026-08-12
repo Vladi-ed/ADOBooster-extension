@@ -1,0 +1,94 @@
+.com-ibm-team-workitem .queryResultPageControl {
+    margin-top: 0!important;
+}
+
+.jazz-ui-PageTemplate > .banner > .above-banner {
+    display: none;
+}
+
+.jazz-ui-PageTemplate > .navbar-wrapper > .navbar {
+    padding-bottom: 1px !important;
+}
+
+.com-ibm-team-workitem .workItemBanner.metaNavTall {
+    padding: 0;
+    background: none;
+    border: none;
+    margin-top: -20px;
+    margin-bottom: 3px;
+}
+
+span.landmark-breadcrumbs > div > span:last-child > span {
+    display: none;
+}
+
+.com-ibm-team-workitem .workItemEditor {
+    padding: 0 16px 0 16px !important;
+}
+.com-ibm-team-workitem .landmark {
+    margin: 5px 0 2px 14px !important;
+}
+
+.jazz-ui-DrawerAnchor.closed {
+    display: none;
+}
+
+.com-ibm-team-workItem-workItemEditorHeader, .com-ibm-team-workitem .workItemEditor .LeftColumn > *, .com-ibm-team-workitem .workItemEditor .RightColumn > *, .com-ibm-team-workitem .workItemEditor .SingleColumn > * {
+    background: #f5f5f5;
+    border: 1px solid #cacaca;
+    padding: 5px 8px !important;
+    border-radius: 4px;
+}
+
+.com-ibm-team-workItem-workItemEditorHeader > .Header1stRow:not(.StickyHeader) {
+    border: none !important;
+}
+
+.workItemEditorWithShadedBackground {
+    background: none !important;
+}
+
+.com-ibm-team-workItem-workItemEditorHeader {
+    z-index: 2;
+    position: relative;
+}
+.com-ibm-team-workitem .workItemEditor .TabArea, .dj_webkit .com-ibm-team-workitem .workItemEditor .TabArea {
+    margin-top: -1px !important;
+}
+
+.com-ibm-team-workItem-workItemEditorHeader > .Header2ndRow {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.com-ibm-team-workitem .landmark-breadcrumbs {
+    margin-left: 8px;
+}
+
+div.LeftColumn > div:nth-child(3) > div > div > div.SectionContent > div > div > table > tbody > tr:nth-child(1) > td.Column.rightColumn > div > table > tbody > tr:nth-child(2) {
+    display: none;
+}
+
+input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.CommandArea .j-button-primary, .CommandArea .j-button-secondary {
+    border-radius: 4px !important;
+    min-height: 30px !important;
+}
+
+.j-buttonGroup-bleed-two {
+    height: 52px;
+}
+
+/* for the iframe image */
+body > img {
+    height: 100% !important;
+    object-fit: contain;
+}
+body {
+    margin: 0;
+}

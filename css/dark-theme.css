@@ -1,0 +1,78 @@
+.dark-mode {
+    filter:
+        invert(1)
+        hue-rotate(180deg)
+        contrast(0.75)
+        brightness(1.2)
+        saturate(0.8);
+}
+
+.dark-mode img,
+.dark-mode picture,
+.dark-mode video,
+.dark-mode canvas,
+.dark-mode object,
+.dark-mode embed,
+.dark-mode .navbar-wrapper,
+.dark-mode .titleIconLinkNode,
+/*.dark-mode iframe,*/
+.dark-mode .workItemType > span > span,
+.dark-mode .no-dark-invert {
+    filter:
+        saturate(1.25)
+        brightness(0.87)
+        contrast(1.333)
+        hue-rotate(180deg)
+        invert(1);
+}
+
+.dark-mode div.banner,
+.dark-mode div.banner > div.banner-area {
+    background: #777777 !important;
+}
+
+/* Container styling - ensure it's visible against the black background */
+.dark-mode .filterBox {
+    background-color: #2a2d2e !important;
+    border: 1px solid #555 !important;
+    border-radius: 10px !important; /* Pill shape looks better for search */
+    display: flex !important;
+    align-items: center !important;
+    padding: 0 10px !important;
+    height: 24px !important;
+}
+
+/* Input styling - fix color and alignment */
+.dark-mode .filterControl {
+    background-color: transparent !important;
+    color: #ffffff !important;
+    border: none !important;
+    font-size: 13px !important;
+    flex-grow: 1 !important;
+    padding: 0 !important;
+    outline: none !important;
+}
+
+/* Restore and fix the clear/search icon */
+.dark-mode .filterImgLink {
+    display: inline-block !important;
+    position: static !important; /* Reset from absolute if needed */
+    width: 16px !important;
+    height: 16px !important;
+    margin-left: 5px !important;
+    filter: invert(1) brightness(2) !important; /* Make the icon white and sharp */
+    opacity: 0.6 !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+}
+
+/* Remove default wrapper disabled look if any */
+.dark-mode .filterBoxWrapper {
+    background: none !important;
+    border: none !important;
+    height: 25px !important;
+}
+
+.label {
+    color: black !important;
+}
