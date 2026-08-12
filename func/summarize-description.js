@@ -1,44 +1,13 @@
-import {config} from "./config.js";
-
 const SUMMARY_OPTIONS_COUNT = 3;
-
+const popoverId = 'extSummarizeDescription-popover'
 let summarizerPromise;
-let outsideClickController;
 
-export function createDescriptionSummaryButton() {
-    if (!('Summarizer' in self)) {
-        console.log('No Summarizer API found in this browser. Please use Chrome 138 or later.');
-        return;
-    }
-
-    const toolbarContainer = getDescriptionToolbar();
-
-    if (!toolbarContainer) {
-        console.log('createDescriptionSummaryButton() - No description toolbar found');
-        return;
-    }
-
-    toolbarContainer.style.lineHeight = '1.5em';
-
-    const magicButton = document.createElement('button');
-    magicButton.id = config.ids.descriptionSummaryButton;
-    magicButton.type = 'button';
-    magicButton.innerText = '✨ Summary:';
-    magicButton.title = 'Summarize the description';
-    magicButton.className = 'ck ck-button ck-off ck-rounded-corners';
-    magicButton.style.minHeight = 'auto';
-    magicButton.style.padding = '3px 0';
-    magicButton.addEventListener('click', () => summarizeDescription(magicButton));
-
-    toolbarContainer.replaceChild(magicButton, toolbarContainer.firstChild);
-}
-
-async function summarizeDescription(button) {
+export async function summarizeDescription(button) {
     const descriptionField = getDescriptionField();
     const description = descriptionField?.innerText?.trim();
 
     if (!description) {
-        console.log('No defect description to summarize');
+        console.log('No description to summarize');
         return;
     }
 
@@ -83,6 +52,11 @@ async function summarizeDescription(button) {
         button.disabled = false;
         button.innerText = previousText;
     }
+}
+
+function getDescriptionField() {
+    const descriptionFields = document.body.querySelectorAll("div.lean-rooster.rooster-editor[aria-label='Description']");
+    return descriptionFields.item(descriptionFields.length - 1);
 }
 
 function getSummarizerOptions() {
@@ -303,7 +277,7 @@ function showSummaryPopover(summaries) {
     hideSummaryPopover();
 
     const popover = document.createElement('div');
-    popover.id = getPopoverId();
+    popover.id = popoverId;
     popover.setAttribute('popover', 'auto');
 
     Object.assign(popover.style, {
@@ -311,7 +285,10 @@ function showSummaryPopover(summaries) {
         margin: '3px',
         border: '1px solid #cacaca',
         borderRadius: '4px',
-        boxShadow: '0 2px 8px rgb(0 0 0 / 20%)'
+        boxShadow: '0 2px 8px rgb(0 0 0 / 20%)',
+        inset: 'auto',
+        positionAnchor: '--summary-btn',
+        positionArea: 'bottom'
     });
 
     const content = document.createElement('div');
@@ -328,7 +305,7 @@ function showSummaryPopover(summaries) {
 
     Object.assign(textarea.style, {
         width: '560px',
-        height: '65px',
+        height: '74px',
         padding: '4px',
         lineHeight: '20px',
         resize: 'vertical',
@@ -339,6 +316,8 @@ function showSummaryPopover(summaries) {
 
     content.append(textarea, buttons);
     popover.append(content);
+
+    // const extGenerateBtn = document.getElementById('extGenerateBtn');
     document.body.append(popover);
 
     popover.showPopover();
@@ -363,7 +342,7 @@ function createCopyButtons(textarea, count) {
 function createCopyButton(textarea, index) {
     const button = document.createElement('button');
     button.type = 'button';
-    button.innerText = `Copy #${index + 1}`;
+    button.innerText = `Copy ${index + 1}`;
 
     Object.assign(button.style, {
         height: '22px',
@@ -395,7 +374,7 @@ function getTextareaLine(textarea, index) {
 }
 
 function hideSummaryPopover() {
-    const popover = document.getElementById(getPopoverId());
+    const popover = document.getElementById(popoverId);
 
     if (!popover) return;
 
@@ -411,16 +390,3 @@ function hideSummaryPopover() {
     popover.remove();
 }
 
-function getPopoverId() {
-    return config.ids.descriptionSummaryButton + '-popover';
-}
-
-function getDescriptionField() {
-    const descriptionFields = document.body.querySelectorAll(config.selectors.descriptionField);
-    return descriptionFields.item(descriptionFields.length - 1);
-}
-
-function getDescriptionToolbar() {
-    const toolbar = document.body.querySelectorAll(config.selectors.summaryContainer);
-    return toolbar.item(toolbar.length - 1);
-}
