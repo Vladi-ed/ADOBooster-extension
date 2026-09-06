@@ -11,7 +11,7 @@ export function createDescriptionSummaryButton(toolbarContainer) {
     // magicButton.popovertarget = 'extSummarizeDescription-popover';
     magicButton.style.anchorName = '--summary-btn';
     magicButton.type = 'button';
-    magicButton.innerText = '✨ Summary';
+    magicButton.innerText = '֎ Summarize';
     magicButton.title = 'Summarize the description';
     magicButton.className = "bolt-button";
     toolbarContainer.prepend(magicButton);

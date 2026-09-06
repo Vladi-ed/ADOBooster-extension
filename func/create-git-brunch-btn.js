@@ -3,7 +3,7 @@ export function createGitBranchBtn(headerSelector) {
     generateGitBranchBtn.className = "bolt-button";
     generateGitBranchBtn.style.marginInline = "16px";
     generateGitBranchBtn.style.color = "darkolivegreen";
-    generateGitBranchBtn.textContent = "🌿 Generate git branch";
+    generateGitBranchBtn.textContent = "🔀 Copy branch name";
     headerSelector.prepend(generateGitBranchBtn);
 
     generateGitBranchBtn.addEventListener("click", async () => {
