@@ -25,6 +25,12 @@ export async function summarizeDescription(button) {
             return;
         }
 
+        if (availability === 'downloadable') {
+            button.innerText = '✨ Downloading model...';
+        } else if (availability === 'downloading') {
+            button.innerText = '✨ Model downloading...';
+        }
+
         const summarizer = await getSummarizer();
 
         const rawSummary = await summarizer.summarize(description, {
@@ -86,6 +92,9 @@ function getSummarizer() {
                 else console.log(`Model download ${Math.round(e.loaded * 100)}%`);
             });
         }
+    }).catch((error) => {
+        summarizerPromise = undefined;
+        throw error;
     });
 
     return summarizerPromise;
@@ -312,10 +321,18 @@ function showSummaryPopover(summaries) {
         display: 'block'
     });
 
-    const buttons = createCopyButtons(textarea, summaries.length);
+    const copyError = document.createElement('div');
+    copyError.setAttribute('role', 'alert');
+
+    Object.assign(copyError.style, {
+        color: '#d13438',
+        marginTop: '6px'
+    });
+
+    const buttons = createCopyButtons(textarea, summaries.length, copyError);
 
     content.append(textarea, buttons);
-    popover.append(content);
+    popover.append(content, copyError);
 
     // const extGenerateBtn = document.getElementById('extGenerateBtn');
     document.body.append(popover);
@@ -323,7 +340,7 @@ function showSummaryPopover(summaries) {
     popover.showPopover();
 }
 
-function createCopyButtons(textarea, count) {
+function createCopyButtons(textarea, count, copyError) {
     const buttons = document.createElement('div');
 
     Object.assign(buttons.style, {
@@ -333,13 +350,13 @@ function createCopyButtons(textarea, count) {
     });
 
     for (let index = 0; index < count; index++) {
-        buttons.append(createCopyButton(textarea, index));
+        buttons.append(createCopyButton(textarea, index, copyError));
     }
 
     return buttons;
 }
 
-function createCopyButton(textarea, index) {
+function createCopyButton(textarea, index, copyError) {
     const button = document.createElement('button');
     button.type = 'button';
     button.innerText = `Copy ${index + 1}`;
@@ -351,15 +368,16 @@ function createCopyButton(textarea, index) {
 
     button.addEventListener('click', async () => {
         const line = getTextareaLine(textarea, index);
+        copyError.textContent = '';
 
         try {
-            if (line) {
-                await navigator.clipboard.writeText(line);
-            }
+            if (!line) throw new Error('No summary text to copy');
+
+            await navigator.clipboard.writeText(line);
+            hideSummaryPopover();
         } catch (e) {
             console.warn('Failed to copy summary text', e);
-        } finally {
-            hideSummaryPopover();
+            copyError.textContent = 'Could not copy. Select and copy the text manually.';
         }
     });
 

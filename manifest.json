@@ -3,7 +3,7 @@
   "name": "ADOBooster",
   "description": "Extension for Azure DevOps Boards: adds quick actions.",
   "author": "Vladi Edelshtein",
-  "version": "1.0",
+  "version": "1.1",
   "action": {
     "default_title": "ADOBooster"
   },
