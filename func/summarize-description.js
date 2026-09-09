@@ -111,7 +111,7 @@ function getPrefixInstruction(allowedPrefixes) {
     }
 
     if (allowedPrefixes.length === 1) {
-        return `Each option must start with this exact prefix: ${allowedPrefixes[0]}:.`;
+        return `Each option must start with this exact prefix: ${allowedPrefixes[0]}:`;
     }
 
     return `Each option must start with exactly one of these prefixes: ${allowedPrefixes.map((prefix) => `${prefix}:`).join(' or ')}.`;

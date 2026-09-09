@@ -10,16 +10,8 @@
   "content_scripts": [
     {
       "js": ["content-script-loader.js"],
-      "all_frames": false,
       "matches": [
         "https://dev.azure.com/securitas-healthcare/*"
-      ]
-    },
-    {
-      "css": ["css/custom.css", "css/dark-theme.css"],
-      "all_frames": true,
-      "matches": [
-        "https://dev.azure.com/securitas-healthcare/SHS/*/edit/*"
       ]
     }
   ],
