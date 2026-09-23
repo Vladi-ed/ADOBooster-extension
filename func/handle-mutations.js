@@ -22,8 +22,8 @@ function handleAddedElement(node) {
     if (firstClassName === 'bolt-identitypickerdropdown') {
         console.log(firstClassName, 'firstClassName', node);
 
-        createGitBranchBtn(node.parentNode.parentElement.firstChild.firstChild)
-        createDescriptionSummaryButton(node.parentNode.parentElement.firstChild.firstChild)
+        createGitBranchBtn(node.parentElement.parentElement.parentElement)
+        createDescriptionSummaryButton(node.parentElement.parentElement.firstChild.firstChild)
         return true;
     }
 

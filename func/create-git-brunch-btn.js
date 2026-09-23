@@ -1,11 +1,15 @@
 export function createGitBranchBtn(toolbarContainer) {
-    const BUTTON_LABEL = '🔀 Copy branch name';
+    const BUTTON_LABEL = '\uE1DD';
     const button = document.createElement('button');
+    button.textContent = BUTTON_LABEL;
     button.type = 'button';
     button.className = 'bolt-button';
-    button.style.marginInline = '16px';
-    button.style.color = 'darkolivegreen';
-    button.textContent = BUTTON_LABEL;
+    button.style.marginInline = '2px';
+    button.style.padding = '8px';
+    button.style.fontFamily = 'FluentRegular';
+    button.style.fontWeight = '100';
+    button.style.fontSize = '15px';
+    button.style.lineHeight = '1rem';
 
     let resetLabelTimeout;
 
@@ -17,23 +21,25 @@ export function createGitBranchBtn(toolbarContainer) {
         }
 
         clearTimeout(resetLabelTimeout);
-        button.disabled = true;
 
         try {
             await navigator.clipboard.writeText(generateGitBranchName(ticketName));
-            button.textContent = '✅ Branch name copied';
+            button.textContent = '✅';
         } catch (error) {
             console.error('Failed to copy Git branch name', error);
             button.textContent = '❌ Could not copy branch name';
         } finally {
-            button.disabled = false;
             resetLabelTimeout = setTimeout(() => {
                 button.textContent = BUTTON_LABEL;
             }, 1000);
         }
     });
 
-    toolbarContainer.prepend(button);
+    const original = toolbarContainer.querySelector('div.bolt-clipboard-button.invisible');
+    if (original) {
+        original.append(button);
+        // original.parentNode.appendChild(button);
+    }
 }
 
 function getTicketName() {

@@ -8,12 +8,16 @@ export function createDescriptionSummaryButton(toolbarContainer) {
 
     const magicButton = document.createElement('button');
     magicButton.id = 'extGenerateBtn';
-    // magicButton.popovertarget = 'extSummarizeDescription-popover';
     magicButton.style.anchorName = '--summary-btn';
     magicButton.type = 'button';
-    magicButton.innerText = '֎ Summarize';
-    magicButton.title = 'Summarize the description';
-    magicButton.className = "bolt-button";
+    magicButton.innerText = '\uf28f';
+    // magicButton.title = 'Summarize the description';
+    magicButton.className = 'bolt-button';
+    magicButton.style.fontFamily = 'AzureDevOpsMDL2Assets';
+    magicButton.style.fontWeight = '100';
+    magicButton.style.padding = '7px';
+    magicButton.ariaHaspopup = 'true';
+    magicButton.ariaLabel = 'Summarize description';
     toolbarContainer.prepend(magicButton);
     magicButton.addEventListener('click', () => summarizeDescription(magicButton));
 }
