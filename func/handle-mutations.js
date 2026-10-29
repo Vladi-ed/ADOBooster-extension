@@ -1,5 +1,5 @@
 import {createGitBranchBtn} from "./create-git-brunch-btn.js";
-import {createDescriptionSummaryButton} from "./create-summary-btn.js";
+// import {createDescriptionSummaryButton} from "./create-summary-btn.js";
 
 export function handleMutations(mutationList) {
     const start = performance.now();
@@ -23,7 +23,8 @@ function handleAddedElement(node) {
         console.log(firstClassName, 'firstClassName', node);
 
         createGitBranchBtn(node.parentElement.parentElement.parentElement)
-        createDescriptionSummaryButton(node.parentElement.parentElement.firstChild.firstChild)
+        // disable summary button
+        // createDescriptionSummaryButton(node.parentElement.parentElement.firstChild.firstChild)
         return true;
     }
 
