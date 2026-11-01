@@ -1,0 +1,32 @@
+div.query-header-breadcrumb-container {
+    margin-top: 0;
+    min-height: 50px;
+}
+
+div.query-header-tab-container {
+    padding-bottom: 0;
+}
+
+div.project-header > div > div.region-header {
+    min-height: 40px;
+}
+
+div.project-header > div > div.region-header-menubar {
+    min-height: 40px;
+}
+
+div.work-item-form-header.padding-bottom-4 {
+    padding-bottom: 0;
+}
+
+div.work-item-form-header > div.flex-row.padding-bottom-4 {
+    padding-bottom: 0;
+}
+
+div.work-item-tag-picker {
+    min-height: 28px;
+}
+
+div.work-item-form-first-section .flex-column.work-item-form-group:has(button[aria-label="Maximize Reason section"]) {
+    display: none;
+}
