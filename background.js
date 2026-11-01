@@ -18,7 +18,8 @@ async function openADO() {
         await chrome.windows.update(jazzTabs[0].windowId, {focused: true});
     }
     else await chrome.tabs.create({
-        url: 'https://dev.azure.com/securitas-healthcare/SHS/_queries/favorites',
+        // url: 'https://dev.azure.com/securitas-healthcare/SHS/_queries/favorites',
+        url: 'https://dev.azure.com/securitas-healthcare/SHS/_queries/query/4785e767-1b89-4451-80b5-bcbdc8b774d6',
         active: true
     });
 }
