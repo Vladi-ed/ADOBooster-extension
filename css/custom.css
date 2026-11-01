@@ -1,32 +1,275 @@
+/* ==========================================================================
+   1. Project header (top bar of the page content)
+   ========================================================================== */
+
+/* Project header (title area) above the page content: shorter row */
+div.project-header > div > div.region-header {
+    min-height: 40px;
+}
+
+/* Project header menu bar (toolbar on the right of the project header): shorter row */
+div.project-header > div > div.region-header-menubar {
+    min-height: 40px;
+}
+
+/* ==========================================================================
+   2. Header -> Breadcrumbs ("Queries > My Queries > <query name>", "Back to query")
+   ========================================================================== */
+
+/* Query breadcrumb bar: no top gap, shorter row */
 div.query-header-breadcrumb-container {
     margin-top: 0;
     min-height: 50px;
 }
 
+/* Query tabs row under the breadcrumb (Results / Editor / Charts): no bottom padding */
 div.query-header-tab-container {
     padding-bottom: 0;
 }
 
-div.project-header > div > div.region-header {
-    min-height: 40px;
-}
+/* ==========================================================================
+   3. Work item header (type, ID, title, author, comments, tags)
+   ========================================================================== */
 
-div.project-header > div > div.region-header-menubar {
-    min-height: 40px;
-}
-
+/* Work item header block: remove the space under it */
 div.work-item-form-header.padding-bottom-4 {
     padding-bottom: 0;
 }
 
+/* Rows inside the work item header (title row, author/comments/tags row): remove bottom padding */
 div.work-item-form-header > div.flex-row.padding-bottom-4 {
     padding-bottom: 0;
 }
 
+/* Work item title: larger and bold */
+.work-item-title-textfield input.bolt-textfield-input {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* Tag picker ("Add Tag"): shorter row */
 div.work-item-tag-picker {
     min-height: 28px;
 }
 
+/* ==========================================================================
+   4. State / Reason / Area / Iteration strip (grey bar under the header)
+   ========================================================================== */
+
+/* Grey strip: more horizontal padding and a divider at the bottom */
+div.work-item-form-subheader {
+    padding: 1px 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, .06);
+}
+
+/* Strip field names (State, Reason, Area, Iteration): small uppercase grey label */
+div.work-item-form-subheader .work-item-control-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: rgba(0, 0, 0, .6);
+}
+
+/* Strip field names that use their own <label>: take the style from the rule above */
+div.work-item-form-subheader .work-item-control-label label {
+    font-size: inherit;
+    color: inherit;
+}
+
+/* ==========================================================================
+   5. Form columns and sections (Description, Planning, Related Work, ...)
+   ========================================================================== */
+
+/* 2nd and 3rd columns of the form: thin vertical divider on the left */
+div.work-item-form-right div.work-item-form-section {
+    border-left: 1px solid rgba(0, 0, 0, .06);
+    padding-left: 16px;
+}
+
+/* Each section (group) on the form: space below it */
+div.work-item-form-group {
+    padding-bottom: 12px;
+}
+
+/* Hide the "Reason" section in the first (left) column; Reason is still shown in the State strip */
 div.work-item-form-first-section .flex-column.work-item-form-group:has(button[aria-label="Maximize Reason section"]) {
     display: none;
+}
+
+/* Section header row: softer divider line, space before the content,
+   title vertically centered with the maximize/collapse buttons */
+div.work-item-form-collapsible-header {
+    border-bottom-color: rgba(0, 0, 0, .06) !important;
+    margin-bottom: 8px;
+    align-items: center;
+}
+
+/* Section header title text: small uppercase grey label */
+div.work-item-form-collapsible-header .font-size-ml {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: rgba(0, 0, 0, .6);
+}
+
+/* Maximize/collapse buttons (chevrons): keep them on one line next to long (two-line) section titles */
+div.work-item-form-section-controls {
+    display: flex;
+    flex-shrink: 0;
+}
+
+/* ==========================================================================
+   6. Fields inside sections
+   ========================================================================== */
+
+/* Each field (label + control): space between fields */
+div.work-item-form-control-wrapper {
+    padding-bottom: 10px;
+}
+
+/* Field label (e.g. "Priority"): gap between the label and its control */
+div.work-item-form-control-wrapper .workitemcontrol-label {
+    margin-bottom: 4px;
+}
+
+/* Bordered field containers (rich text editors, inputs): rounded corners */
+div.work-item-form-control-content.show-border {
+    border-radius: 6px;
+}
+
+/* Rich text editors (Description, Repro Steps, ...): inner padding and line spacing */
+div.html-editor.work-item-form-control {
+    padding: 8px 12px;
+    line-height: 1.5;
+}
+
+/* Dropdown and toggle fields: remove the extra outer padding so they line up with text fields */
+div.work-item-form-control-wrapper .bolt-editable-dropdown.work-item-form-control,
+div.work-item-form-control-wrapper .bolt-toggle-button.work-item-form-control {
+    padding: 0;
+}
+
+/* Text field and dropdown boxes: same height, rounded corners */
+div.work-item-form-control-wrapper .bolt-textfield.focus-treatment {
+    min-height: 32px;
+    border-radius: 4px;
+}
+
+/* Text field and dropdown boxes (not focused, not read-only): more visible outline */
+div.work-item-form-control-wrapper .bolt-textfield.focus-treatment:not(.focused):not(.disabled) {
+    border-color: rgba(0, 0, 0, .12);
+}
+
+/* Text inside text fields and dropdowns: inset from the box edge */
+div.work-item-form-control-wrapper .bolt-textfield-input {
+    padding: 0 10px;
+}
+
+/* Toggle fields (Blocker, Release Notes, ...): same row height as text fields */
+div.work-item-form-control-wrapper .bolt-toggle-button.work-item-form-control {
+    min-height: 32px;
+    align-items: center;
+}
+
+/* ==========================================================================
+   7. Related Work section
+   ========================================================================== */
+
+/* Related Work field: stack "Add link" and the links list in a column */
+div.work-item-form-control-wrapper:has(> .compact-links-list) {
+    display: flex;
+    flex-direction: column;
+}
+
+/* "Add link" button: plain blue link-style text, no background or side padding */
+div.work-item-form-control-wrapper > .bolt-expandable-button > .bolt-button {
+    padding-left: 0;
+    padding-right: 0;
+    background: none;
+    color: var(--communication-foreground, #0078d4);
+    font-weight: 600;
+}
+
+/* "Add link" button: align to the right */
+div.work-item-form-control-wrapper:has(> .compact-links-list) > .bolt-expandable-button {
+    align-self: flex-end;
+}
+
+/* "Add link" button when links exist: pull the list up so the button sits on the first link-type row ("PARENT").
+   Keep the negative margin a bit smaller than the button height below (18px) so the two don't overlap */
+div.work-item-form-control-wrapper:has(> .compact-links-list .link-type-group) > .bolt-expandable-button {
+    margin-bottom: -14px;
+    position: relative;
+    z-index: 1;
+}
+
+/* "Add link" button: compact height and smaller text */
+div.work-item-form-control-wrapper:has(> .compact-links-list) > .bolt-expandable-button > .bolt-button {
+    height: 18px;
+    padding-top: 0;
+    padding-bottom: 0;
+    font-size: 13px;
+}
+
+/* Link type groups (Parent, Child, Related, ...): space between groups */
+div.compact-links-list .link-type-group + .link-type-group {
+    margin-top: 12px;
+}
+
+/* Link type name ("PARENT", "CHILD", ...): small uppercase grey label */
+div.compact-links-list .link-type-name {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: rgba(0, 0, 0, .6);
+    padding-bottom: 6px;
+}
+
+/* Each linked item: card with a light border and rounded corners */
+div.compact-links-list .removable-item-container {
+    border: 1px solid rgba(0, 0, 0, .08);
+    border-radius: 6px;
+    margin-bottom: 6px;
+}
+
+/* Linked item card on hover: subtle highlight */
+div.compact-links-list .removable-item-container:hover {
+    background: rgba(0, 0, 0, .03);
+}
+
+/* Linked item card content: inner padding, allow wrapping */
+div.compact-links-list .artifact-link-container {
+    padding: 8px 10px;
+    white-space: normal;
+}
+
+/* Linked item first row (icons, ID, title): keep icons at the top, move the title to its own line when it doesn't fit */
+div.compact-links-list .artifact-link.flex-row {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 2px;
+}
+
+/* Linked item title: wrap long titles instead of cutting them off with "..." */
+div.compact-links-list a.artifact-link-link {
+    white-space: normal;
+    min-width: 0;
+}
+
+/* Linked item details line ("Oct 7 · New"): smaller grey text, no indent (lines up with the icons) */
+div.compact-links-list .artifact-details {
+    margin-top: 4px;
+    margin-left: 0;
+    color: rgba(0, 0, 0, .6);
+    font-size: 12px;
+}
+
+/* Linked item details line: hide the word "Updated" before the date (font-size 0 hides the text) */
+div.compact-links-list .artifact-details > span:first-child > span.text-ellipsis {
+    font-size: 0;
+}
+
+/* Linked item details line: show the date itself at normal size */
+div.compact-links-list .artifact-details > span:first-child > span.text-ellipsis > span {
+    font-size: 12px;
 }
