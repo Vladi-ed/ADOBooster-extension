@@ -38,7 +38,7 @@ div.work-item-form-header.padding-bottom-4 {
 
 /* Rows inside the work item header (title row, author/comments/tags row): remove bottom padding */
 div.work-item-form-header > div.flex-row.padding-bottom-4 {
-    padding-bottom: 0;
+    padding-bottom: 3px;
 }
 
 /* Work item title: larger and bold */
