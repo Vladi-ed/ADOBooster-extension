@@ -273,3 +273,8 @@ div.compact-links-list .artifact-details > span:first-child > span.text-ellipsis
 div.compact-links-list .artifact-details > span:first-child > span.text-ellipsis > span {
     font-size: 12px;
 }
+
+
+.flex-row.discussion-new-comment.markdown-discussion-comment {
+    box-shadow: none;
+}
